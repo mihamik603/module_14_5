@@ -5,26 +5,18 @@ def initiate_db():
     conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
 
-    # Создание таблицы Products
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Products (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        price INTEGER NOT NULL
-    )
-    ''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS Products 
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    price INTEGER NOT NULL)''')
 
-    # Создание таблицы Users
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
-        email TEXT NOT NULL,
-        age INTEGER NOT NULL,
-        balance INTEGER NOT NULL DEFAULT 1000
-    )
-    ''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS Users 
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    balance INTEGER NOT NULL DEFAULT 1000)''')
 
     conn.commit()
     conn.close()
