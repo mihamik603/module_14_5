@@ -7,14 +7,11 @@ from aiogram.utils import executor
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import sqlite3
 from crud_functions import initiate_db, get_all_products, add_user, is_included
-
-API_TOKEN = '7592039412:AAG0qyrAiZ86tEtCMA6MNmjzvTpXb9Hy8Gk'
+API_TOKEN = ''
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 initiate_db()
-
-# Добавление образцов продуктов (вызываем только один раз)
 def add_sample_products():
     conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
@@ -22,13 +19,11 @@ def add_sample_products():
         ("Product1", "Описание 1", 100),
         ("Product2", "Описание 2", 200),
         ("Product3", "Описание 3", 300),
-        ("Product4", "Описание 4", 400),
-    ]
+        ("Product4", "Описание 4", 400),]
     cursor.executemany('INSERT INTO Products (title, description, price) VALUES (?, ?, ?)', sample_products)
     conn.commit()
     conn.close()
-
-#add_sample_products()  # Закомментируйте, если уже добавили продукты
+#add_sample_products()  # Закомментировать
 class UserState(StatesGroup):
     age = State()
     growth = State()
